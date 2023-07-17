@@ -1,0 +1,22 @@
+version: '3.6'
+volumes:
+  data:
+services:
+  database:
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      TZ: Europe/Madrid
+      POSTGRES_DB: ${DB_USER}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - default
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
