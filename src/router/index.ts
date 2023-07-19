@@ -18,8 +18,6 @@ router.get('/users', async (req: Request, res: Response) => {
       message: 'Internal Server Error',
     });
   }
-
-  res.status(200).send('users');
 });
 
 router.get('/posts/:id', (req: Request, res: Response) => {
