@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "sourceMap": true,
-    "rootDir": "./src/",
+    "rootDir": ".",
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es6",
@@ -17,6 +17,6 @@
     }
   },
   "allowSyntheticDefaultImports": true,
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../../knexfile.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

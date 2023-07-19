@@ -1,6 +1,4 @@
-require('dotenv').config({
-  path: '../../.env',
-});
+require('dotenv').config();
 require('ts-node/register');
 import type { Knex } from 'knex';
 
@@ -13,20 +11,20 @@ const connection: Knex.ConnectionConfig = {
   password: process.env.DB_PASSWORD as string,
 };
 
-const pool: Knex.PoolConfig = {
-  min: 2,
-  max: 10,
-};
-
-const migrations: Knex.MigratorConfig = {
-  tableName: 'knex_migrations',
-};
-
 const commonConfig: Knex.Config = {
-  connection,
-  pool,
-  migrations,
   client: 'pg',
+  connection,
+  pool: {
+    min: 2,
+    max: 10,
+  },
+  migrations: {
+    tableName: 'knex_migrations',
+    directory: 'src/database/migrations'
+  },
+  seeds: {
+    directory: 'src/database/seeds'
+  }
 };
 
 export default Object.fromEntries(environments.map((env: string) => [env, commonConfig]));

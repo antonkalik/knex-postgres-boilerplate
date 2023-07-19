@@ -5,7 +5,7 @@ export type DateType = {
   updated_at: Date;
 };
 
-type ResponseType<Result> = Promise<Result & DateType>
+type ResponseType<Result> = Promise<Result & DateType>;
 
 export class Model {
   static tableName: string;

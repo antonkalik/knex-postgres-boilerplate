@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: postgres.dockerfile
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres-knex
     environment:
       TZ: Europe/Madrid
       POSTGRES_DB: ${DB_USER}
