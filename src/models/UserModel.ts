@@ -1,4 +1,4 @@
-import { Model } from 'src/models/Model';
+import {DateType, Model} from 'src/models/Model';
 
 export enum Role {
   Admin = 'admin',
@@ -25,14 +25,19 @@ const defaultUserData: DefaultUserData = {
 export class UserModel extends Model {
   static tableName = 'users';
 
-  public static async create<Payload>(data: Payload) {
+  public static async create<Payload>(data: Payload): Promise<UserType & DateType> {
     return super.insert<Payload & DefaultUserData, UserType>({
       ...data,
       ...defaultUserData,
     });
   }
 
-  public static findByEmail(email: string) {
-    return this.findBy({ email });
+  public static findByEmail(email: string): Promise<UserType> {
+    return this.findBy<
+      {
+        email: string;
+      },
+      UserType
+    >({ email });
   }
 }

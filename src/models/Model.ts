@@ -1,3 +1,4 @@
+import Knex from 'knex';
 import { database } from 'src/database';
 
 export type DateType = {
@@ -15,6 +16,10 @@ export class Model {
       throw new Error('You must set a table name!');
     }
     return database(this.tableName);
+  }
+
+  public static async all<Result>(): Promise<Result[]> {
+    return this.table;
   }
 
   public static async insert<Payload, Result>(data: Payload): ResponseType<Result> {
